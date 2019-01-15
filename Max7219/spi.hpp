@@ -8,6 +8,8 @@
 #include <unistd.h>
 #include <vector>
 
+#include "Device/spi.hpp"
+
 namespace Max7219
 {
 
@@ -15,7 +17,7 @@ namespace Max7219
  * This class allows basic, single directional SPI communication to the MAX7219
  * driver circuit, used to control 7segment and dot matrix displays.
  */
-class Spi
+class Spi : public Device::Spi
 {
     public:
     /**
@@ -44,11 +46,35 @@ class Spi
     /**
      * Closes the device file.
      */
-    ~Spi()
+    virtual ~Spi() override
     {
         ::close(mDevice);
     }
 
+    /**
+     * Writes buffer to the device via SPI protocol.
+     *
+     * @param[in] buffer The buffer to be sent.
+     */
+    virtual void write(const std::vector<uint8_t> &buffer) override
+    {
+        /*
+         * The alternative to writing to the device is using ioctl()
+         * with the SPI_IOC_MESSAGE macro. This gives more control, but
+         * in this case it is not needed, and using write() allows
+         * regular files to be used instead of spi device file,
+         * simplifying SPI protocol debugging (in this case, fakeSpi
+         * must also be set to true).
+         * For more info on the alternative approach, look for
+         * "torvalds spi dev test".
+         */
+        int ret = ::write(mDevice, buffer.data(), buffer.size());
+        if (ret < 1) {
+            throw std::domain_error("can't send spi message");
+        }
+    }
+
+    private:
     /**
      * Sets the SPI device. The settings are currently fixed and only
      * intended to be working with MAX7219 led driver.
@@ -76,30 +102,6 @@ class Spi
         }
     }
 
-    /**
-     * Writes buffer to the device via SPI protocol.
-     *
-     * @param[in] buffer The buffer to be sent.
-     */
-    void write(const std::vector<uint8_t> &buffer)
-    {
-        /*
-         * The alternative to writing to the device is using ioctl()
-         * with the SPI_IOC_MESSAGE macro. This gives more control, but
-         * in this case it is not needed, and using write() allows
-         * regular files to be used instead of spi device file,
-         * simplifying SPI protocol debugging (in this case, fakeSpi
-         * must also be set to true).
-         * For more info on the alternative approach, look for
-         * "torvalds spi dev test".
-         */
-        int ret = ::write(mDevice, buffer.data(), buffer.size());
-        if (ret < 1) {
-            throw std::domain_error("can't send spi message");
-        }
-    }
-
-    private:
     /** The path of the SPI device, typically /dev/spi*.* */
     std::string mSpiDevPath;
 
