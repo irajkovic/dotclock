@@ -12,6 +12,11 @@ class Display
 {
     public:
     /**
+     * Virtual destructor is a must for polymorphic base class.
+     */
+    virtual ~Display() = default;
+
+    /**
      * Refreshes content of the display. This will flush the internal screen
      * buffer to the actual display device. All other display operations only
      * operate on the internal screen buffer and require call to this method

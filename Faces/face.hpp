@@ -13,6 +13,11 @@ class Face
 {
     public:
     /**
+     * Virtual destructor is a must for polymorphic base class.
+     */
+    virtual ~Face() = default;
+
+    /**
      * Should be called once before clock face animation loop is started, so
      * that clock face can prepare for drawing.
      */
