@@ -5,7 +5,7 @@
 
 #include "Font/font8x8.hpp"
 
-namespace Device
+namespace Util
 {
 
 namespace Painter
@@ -67,4 +67,4 @@ unsigned int writeText(Display *display,
 
 } /* namespace Painter */
 
-} /* namespace Device */
+} // namespace Util

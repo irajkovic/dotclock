@@ -1,9 +1,9 @@
 #include <memory>
 #include <vector>
 
-#include "Device/scrolling-display.hpp"
 #include "Max7219/display.hpp"
 #include "Max7219/spi.hpp"
+#include "Util/scrolling-display.hpp"
 
 #include "Faces/date.hpp"
 #include "Faces/runner.hpp"
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     Max7219::Spi spi(argv[1], true);
     Max7219::Display display(spi, 32U);
-    Device::ScrollingDisplay scrollingDisplay(&display);
+    Util::ScrollingDisplay scrollingDisplay(&display);
 
     Faces::Text separator(&scrollingDisplay, " ");
 

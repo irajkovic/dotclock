@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Device/painter.hpp"
 #include "Font/font5x7.hpp"
 #include "Font/font8x8.hpp"
+#include "Util/painter.hpp"
 #include "Util/time.hpp"
 #include "face.hpp"
 
@@ -15,10 +15,10 @@ namespace Faces
 class Time : public Face
 {
     using F = Font::Font5by7;
-    Device::ScrollingDisplay *mDisplay;
+    Util::ScrollingDisplay *mDisplay;
 
     public:
-    explicit Time(Device::ScrollingDisplay *display) : mDisplay(display)
+    explicit Time(Util::ScrollingDisplay *display) : mDisplay(display)
     {
     }
 
@@ -29,7 +29,7 @@ class Time : public Face
     {
         auto time = Util::getTime("%H:%M");
         mDisplay->clear();
-        Device::Painter::writeText<F>(mDisplay, 0U, 0U, time);
+        Util::Painter::writeText<F>(mDisplay, 0U, 0U, time);
     }
 
     /**

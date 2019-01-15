@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Device/painter.hpp"
+#include "Util/painter.hpp"
 #include "Util/time.hpp"
 #include "face.hpp"
 
@@ -18,10 +18,10 @@ class Date : public Face
     /** Use 5x7 font */
     using F = Font::Font5by7;
 
-    Device::ScrollingDisplay *mDisplay;
+    Util::ScrollingDisplay *mDisplay;
 
     public:
-    explicit Date(Device::ScrollingDisplay *display) : mDisplay(display)
+    explicit Date(Util::ScrollingDisplay *display) : mDisplay(display)
     {
     }
 
@@ -32,7 +32,7 @@ class Date : public Face
     {
         auto time = Util::getTime("%A %e%b");
         mDisplay->clear();
-        Device::Painter::writeText<F>(mDisplay, 0U, 0U, time);
+        Util::Painter::writeText<F>(mDisplay, 0U, 0U, time);
     }
 
     /**

@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Device/painter.hpp"
 #include "Font/font5x7.hpp"
 #include "Font/font8x8.hpp"
+#include "Util/painter.hpp"
 #include "face.hpp"
 
 namespace Faces
@@ -13,7 +13,7 @@ namespace Faces
  */
 class Text : public Face
 {
-    Device::ScrollingDisplay *mDisplay;
+    Util::ScrollingDisplay *mDisplay;
     std::string mText;
 
     public:
@@ -23,7 +23,7 @@ class Text : public Face
      * @param[in] display The pointer to the scrolling display.
      * @param[in] text    The string to show.
      */
-    Text(Device::ScrollingDisplay *display, const std::string &text)
+    Text(Util::ScrollingDisplay *display, const std::string &text)
         : mDisplay(display), mText(text)
     {
     }
@@ -34,7 +34,7 @@ class Text : public Face
     void prepare() override
     {
         mDisplay->clear();
-        Device::Painter::writeText<Font::Font5by7>(
+        Util::Painter::writeText<Font::Font5by7>(
             mDisplay, 0U, 0U, mText.c_str());
     }
 

@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Device/display.hpp"
-#include "Device/screenbuffer.hpp"
+#include "Util/screenbuffer.hpp"
 #include "spi.hpp"
 
 namespace Max7219
@@ -44,7 +44,7 @@ class Display : public Device::Display
      */
     void refresh() override
     {
-        auto height     = Device::ScreenBuffer::kHeight;
+        auto height     = Util::ScreenBuffer::kHeight;
         auto segmentCnt = mBuffer.getSegmentCnt();
 
         for (uint8_t row = 1U; row <= height; row++) {
@@ -170,7 +170,7 @@ class Display : public Device::Display
     /**
      * Screen buffer.
      */
-    Device::ScreenBuffer mBuffer;
+    Util::ScreenBuffer mBuffer;
 
     /** MAX7219 specific register constants, according to the data sheet. */
 

@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 
-namespace Device
+namespace Util
 {
 
 /**
@@ -291,4 +291,4 @@ class ScreenBuffer
     }
 };
 
-} // namespace Device
+} // namespace Util

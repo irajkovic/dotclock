@@ -4,9 +4,9 @@
 #include <vector>
 
 #include "Device/display.hpp"
-#include "Device/screenbuffer.hpp"
+#include "Util/screenbuffer.hpp"
 
-namespace Device
+namespace Util
 {
 
 /**
@@ -146,7 +146,7 @@ class ScrollingDisplay : public Device::Display
     /**
      * Screen buffer.
      */
-    Device::ScreenBuffer mBuffer;
+    ScreenBuffer mBuffer;
 };
 
-} /* namespace Device */
+} // namespace Util
