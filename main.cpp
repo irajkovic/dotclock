@@ -1,14 +1,14 @@
 #include <memory>
 #include <vector>
 
-#include "Max7219/display.hpp"
-#include "Max7219/spi.hpp"
-#include "Util/scrolling-display.hpp"
+#include "max7219/display.hpp"
+#include "max7219/spi.hpp"
+#include "util/scrolling-display.hpp"
 
-#include "Faces/date.hpp"
-#include "Faces/runner.hpp"
-#include "Faces/text.hpp"
-#include "Faces/time.hpp"
+#include "faces/date.hpp"
+#include "faces/runner.hpp"
+#include "faces/text.hpp"
+#include "faces/time.hpp"
 
 int main(int argc, char *argv[])
 {

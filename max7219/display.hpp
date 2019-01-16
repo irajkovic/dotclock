@@ -4,9 +4,9 @@
 #include <numeric>
 #include <vector>
 
-#include "Device/display.hpp"
-#include "Util/screenbuffer.hpp"
-#include "spi.hpp"
+#include "device/display.hpp"
+#include "device/spi.hpp"
+#include "util/screenbuffer.hpp"
 
 namespace Max7219
 {
@@ -29,7 +29,7 @@ class Display : public Device::Display
      * @param[in] spi    The reference to the spi object.
      * @param[in] width  The width of the display, in pixels.
      */
-    Display(Spi &spi, unsigned int width) : mSpi(spi), mBuffer(width)
+    Display(Device::Spi &spi, unsigned int width) : mSpi(spi), mBuffer(width)
     {
         /* Prepare display for data writing */
         writeAll(Test::address, Test::off);
@@ -159,7 +159,7 @@ class Display : public Device::Display
     }
 
     /** Reference to the SPI device. */
-    Spi &mSpi;
+    Device::Spi &mSpi;
 
     /**
      * The length of an SPI command for a single segment (address + value

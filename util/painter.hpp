@@ -3,8 +3,6 @@
 #include <cinttypes>
 #include <string>
 
-#include "Font/font8x8.hpp"
-
 namespace Util
 {
 

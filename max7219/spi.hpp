@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <vector>
 
-#include "Device/spi.hpp"
+#include "device/spi.hpp"
 
 namespace Max7219
 {

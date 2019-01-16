@@ -3,8 +3,8 @@
 #include <iostream>
 #include <vector>
 
-#include "Device/display.hpp"
-#include "Util/screenbuffer.hpp"
+#include "device/display.hpp"
+#include "util/screenbuffer.hpp"
 
 namespace Util
 {

@@ -1,10 +1,9 @@
 #pragma once
 
-#include "Util/painter.hpp"
-#include "Util/time.hpp"
 #include "face.hpp"
-
-#include "Font/font5x7.hpp"
+#include "font/font5x7.hpp"
+#include "util/painter.hpp"
+#include "util/time.hpp"
 
 namespace Faces
 {
