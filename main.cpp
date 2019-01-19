@@ -1,3 +1,4 @@
+#include <cstring>
 #include <memory>
 #include <vector>
 
@@ -13,12 +14,14 @@
 int main(int argc, char *argv[])
 {
     if (argc != 2) {
-        std::cout << "Usage: " << argv[0] << " <spi-device>" << std::endl;
+        std::cout << "Usage: " << argv[0] << " <spi-device|test>" << std::endl;
         return 0;
     }
 
-    Device::Spi::Raspberry spi(argv[1], true);
-    Device::Display::Max7219 display(spi, 32U);
+    bool inTestMode = std::strcmp(argv[1], "test") == 0;
+
+    Device::Spi::Raspberry spi(argv[1], inTestMode);
+    Device::Display::Max7219 display(spi, 32U, inTestMode);
     Util::ScrollingDisplay scrollingDisplay(&display);
 
     Faces::Text separator(&scrollingDisplay, " ");

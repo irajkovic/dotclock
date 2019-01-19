@@ -14,10 +14,25 @@ While the current code has only been tested on the Raspberry PI, it should
 work on any platform as long as appropriate Spi implementation is provided by
 implementing the Device::Spi interface.
 
-Development can be done without an actual hardware as display output can also
-be dumped to the standard output. The Max7219::Spi is implemented so that
-plain files can be used instead of actual /dev/spi*.*, allowing for the
-development on a regular (Linux) workstation.
+# Test mode
+
+Development can also be done on a regular workstation without an actual
+hardware, as the contents of the display can also be dumped to the standard
+output. To enable this, pass "test" as a parameter instead of the actual
+device file. Make sure that the test file also exist, as all SPI commands
+byte stream will be dumped to this file.
+Example of the console output in test mode is given below.
+
+```
+-----X----XXX-----------X----X--
+----XX---X---X---------XX---XX--
+-----X---X---X---X----X-X----X--
+-----X----XXX--------X--X----X--
+-----X---X---X---X---XXXXX---X--
+-----X---X---X----------X----X--
+----XXX---XXX-----------X---XXX-
+--------------------------------
+```
 
 # Usage
 
@@ -25,9 +40,14 @@ To compile the code, simply run:
 ```
 make
 ```
+To run the program in the test mode:
+```
+touch test
+./clock test
+```
 
-Then run the program providing path to device file for SPI
-(here assuming that the MAX7219 is connected to the first spi interface):
+To run the program on a Raspberry Pi, provide the path to device file for
+SPI (here assuming that the MAX7219 is connected to the first spi interface):
 ```
 ./clock /dev/spi0.0
 ```

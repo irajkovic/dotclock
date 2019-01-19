@@ -32,8 +32,8 @@ class Max7219 : public Device::Display::DisplayBase
      * @param[in] spi    The reference to the spi object.
      * @param[in] width  The width of the display, in pixels.
      */
-    Max7219(Device::Spi::SpiBase &spi, unsigned int width)
-        : mSpi(spi), mBuffer(width)
+    Max7219(Device::Spi::SpiBase &spi, unsigned int width, bool dumpToStdOut)
+        : mSpi(spi), mBuffer(width), mDumpToStdOut(dumpToStdOut)
     {
         /* Prepare display for data writing */
         writeAll(Test::address, Test::off);
@@ -57,7 +57,9 @@ class Max7219 : public Device::Display::DisplayBase
             }
         }
 
-        mBuffer.dump();
+        if (mDumpToStdOut) {
+            mBuffer.dump();
+        }
     }
 
     /**
@@ -175,6 +177,9 @@ class Max7219 : public Device::Display::DisplayBase
      * Screen buffer.
      */
     Util::ScreenBuffer mBuffer;
+
+    /** True if output should be dumped to the standard output */
+    bool mDumpToStdOut = false;
 
     /** MAX7219 specific register constants, according to the data sheet. */
 
