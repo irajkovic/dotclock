@@ -5,16 +5,19 @@
 namespace Device
 {
 
+namespace Display
+{
+
 /**
  * Abstract base class to define the display interface.
  */
-class Display
+class DisplayBase
 {
     public:
     /**
      * Virtual destructor is a must for polymorphic base class.
      */
-    virtual ~Display() = default;
+    virtual ~DisplayBase() = default;
 
     /**
      * Refreshes content of the display. This will flush the internal screen
@@ -65,4 +68,6 @@ class Display
     virtual uint8_t shiftLeft(uint8_t column) = 0;
 };
 
-} /* namespace Device */
+} // namespace Display
+
+} // namespace Device

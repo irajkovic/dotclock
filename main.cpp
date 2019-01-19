@@ -1,8 +1,8 @@
 #include <memory>
 #include <vector>
 
-#include "max7219/display.hpp"
-#include "max7219/spi.hpp"
+#include "device/display/max7219.hpp"
+#include "device/spi/raspberry.hpp"
 #include "util/scrolling-display.hpp"
 
 #include "faces/date.hpp"
@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
         return 0;
     }
 
-    Max7219::Spi spi(argv[1], true);
-    Max7219::Display display(spi, 32U);
+    Device::Spi::Raspberry spi(argv[1], true);
+    Device::Display::Max7219 display(spi, 32U);
     Util::ScrollingDisplay scrollingDisplay(&display);
 
     Faces::Text separator(&scrollingDisplay, " ");

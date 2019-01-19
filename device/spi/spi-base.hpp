@@ -6,16 +6,19 @@
 namespace Device
 {
 
+namespace Spi
+{
+
 /**
  * This class defines the SPI interface.
  */
-class Spi
+class SpiBase
 {
     public:
     /**
      * Virtual destructor is a must for polymorphic base class.
      */
-    virtual ~Spi() = default;
+    virtual ~SpiBase() = default;
 
     /**
      * Writes buffer to the device via SPI protocol.
@@ -24,5 +27,7 @@ class Spi
      */
     virtual void write(const std::vector<uint8_t> &buffer) = 0;
 };
+
+} // namespace Spi
 
 } // namespace Device

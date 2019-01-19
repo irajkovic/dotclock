@@ -4,11 +4,14 @@
 #include <numeric>
 #include <vector>
 
-#include "device/display.hpp"
-#include "device/spi.hpp"
+#include "device/spi/spi-base.hpp"
+#include "display-base.hpp"
 #include "util/screenbuffer.hpp"
 
-namespace Max7219
+namespace Device
+{
+
+namespace Display
 {
 
 /**
@@ -20,7 +23,7 @@ namespace Max7219
  * segments) is not handled by this class. Currently, only left-to-right
  * arrangement of the displays is supported.
  */
-class Display : public Device::Display
+class Max7219 : public Device::Display::DisplayBase
 {
     public:
     /**
@@ -29,7 +32,8 @@ class Display : public Device::Display
      * @param[in] spi    The reference to the spi object.
      * @param[in] width  The width of the display, in pixels.
      */
-    Display(Device::Spi &spi, unsigned int width) : mSpi(spi), mBuffer(width)
+    Max7219(Device::Spi::SpiBase &spi, unsigned int width)
+        : mSpi(spi), mBuffer(width)
     {
         /* Prepare display for data writing */
         writeAll(Test::address, Test::off);
@@ -159,7 +163,7 @@ class Display : public Device::Display
     }
 
     /** Reference to the SPI device. */
-    Device::Spi &mSpi;
+    Device::Spi::SpiBase &mSpi;
 
     /**
      * The length of an SPI command for a single segment (address + value
@@ -204,4 +208,6 @@ class Display : public Device::Display
     };
 };
 
-} /* namespace Max7219 */
+} // namespace Display
+
+} // namespace Device

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-#include "device/display.hpp"
+#include "device/display/display-base.hpp"
 #include "util/screenbuffer.hpp"
 
 namespace Util
@@ -14,7 +14,7 @@ namespace Util
  * a width limited physical display, by scrolling the virtual display within
  * the actual display.
  */
-class ScrollingDisplay : public Device::Display
+class ScrollingDisplay : public Device::Display::DisplayBase
 {
     public:
     /**
@@ -22,7 +22,8 @@ class ScrollingDisplay : public Device::Display
      *
      * @param[in] phyDisp The pointer to the physical display.
      */
-    explicit ScrollingDisplay(Display *phyDisp) : mPhyDisp(phyDisp), mBuffer(0U)
+    explicit ScrollingDisplay(Device::Display::DisplayBase *phyDisp)
+        : mPhyDisp(phyDisp), mBuffer(0U)
     {
         mPhyDisp->clear();
     }
@@ -130,7 +131,7 @@ class ScrollingDisplay : public Device::Display
     /**
      * Pointer to the actual display that displays the data.
      */
-    Display *mPhyDisp;
+    Device::Display::DisplayBase *mPhyDisp;
 
     /**
      * Width of the current (virtual) display.

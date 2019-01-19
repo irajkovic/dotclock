@@ -8,16 +8,19 @@
 #include <unistd.h>
 #include <vector>
 
-#include "device/spi.hpp"
+#include "spi-base.hpp"
 
-namespace Max7219
+namespace Device
+{
+
+namespace Spi
 {
 
 /**
  * This class allows basic, single directional SPI communication to the MAX7219
  * driver circuit, used to control 7segment and dot matrix displays.
  */
-class Spi : public Device::Spi
+class Raspberry : public Device::Spi::SpiBase
 {
     public:
     /**
@@ -29,7 +32,7 @@ class Spi : public Device::Spi
      *                       case all outgoing communication is dumped to
      *                       the file.
      */
-    Spi(const std::string &spiDevPath, bool fakeSpi = false)
+    Raspberry(const std::string &spiDevPath, bool fakeSpi = false)
         : mSpiDevPath(spiDevPath), mFakeDevice(fakeSpi)
     {
         mDevice = ::open(mSpiDevPath.c_str(), O_RDWR);
@@ -46,7 +49,7 @@ class Spi : public Device::Spi
     /**
      * Closes the device file.
      */
-    virtual ~Spi() override
+    virtual ~Raspberry() override
     {
         ::close(mDevice);
     }
@@ -115,4 +118,6 @@ class Spi : public Device::Spi
     bool mFakeDevice = false;
 };
 
-} /* namespace Max7219 */
+} // namespace Spi
+
+} // namespace Device
