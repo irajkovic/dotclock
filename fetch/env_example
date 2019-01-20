@@ -1,0 +1,2 @@
+export CLOCK_OVM_KEY='<Your openweathermap API key here>'
+export CLOCK_LOCATION='Berlin,de'

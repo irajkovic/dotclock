@@ -7,9 +7,6 @@ The provided code represents a small framework suitable for development of
 smart clock / display oriented applications. By inheriting Faces::Face base
 class, a new clock face can be easily added.
 
-Currently, only date, time and text faces are provided, but more faces such
-as weather forecast are planned.
-
 While the current code has only been tested on the Raspberry PI, it should
 work on any platform as long as appropriate Spi implementation is provided by
 implementing the Device::Spi interface.
@@ -51,4 +48,17 @@ SPI (here assuming that the MAX7219 is connected to the first spi interface):
 ```
 ./clock /dev/spi0.0
 ```
+# Integration with external programs
 
+The clock supports the "File" face, which loads text from plain text files and
+displays it in a scrolling manner. This allows for a simple integration with
+external tools. Weather clock face has been provided as an example. The weather
+data is first obtained from the openweathermap web api by the python script
+located in the "fetch" folder. The script will dump the output to the
+"tmp/weather" which is then read and displayed by the watch face
+(check main.cpp). To allow for continuous update of the weather data, the
+runner script could be added as a cronjob.
+
+Before using the Weather script, API key and location needs to be set. To do
+so, copy the "fetch/env_example" file to "fetch/.env" and update the API key
+and location environment variables.

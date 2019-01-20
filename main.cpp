@@ -7,6 +7,7 @@
 #include "util/scrolling-display.hpp"
 
 #include "faces/date.hpp"
+#include "faces/file.hpp"
 #include "faces/runner.hpp"
 #include "faces/text.hpp"
 #include "faces/time.hpp"
@@ -29,6 +30,8 @@ int main(int argc, char *argv[])
     std::vector<std::unique_ptr<Faces::Face>> faces;
     faces.emplace_back(std::make_unique<Faces::Time>(&scrollingDisplay));
     faces.emplace_back(std::make_unique<Faces::Date>(&scrollingDisplay));
+    faces.emplace_back(
+        std::make_unique<Faces::File>(&scrollingDisplay, "tmp/weather"));
 
     Faces::Runner runner(faces, separator);
     runner.run();
