@@ -11,6 +11,20 @@ While the current code has only been tested on the Raspberry PI, it should
 work on any platform as long as appropriate Spi implementation is provided by
 implementing the Device::Spi interface.
 
+![Clock animation](https://raw.githubusercontent.com/wiki/irajkovic/dotclock/images/raspberry-pi-clock.gif "Clock animation")
+
+# Usage
+
+To compile the code, simply run:
+```
+make
+```
+To run the program in the test mode:
+```
+touch test
+./clock test
+```
+
 # Test mode
 
 Development can also be done on a regular workstation without an actual
@@ -29,18 +43,6 @@ Example of the console output in test mode is given below.
 -----X---X---X----------X----X--
 ----XXX---XXX-----------X---XXX-
 --------------------------------
-```
-
-# Usage
-
-To compile the code, simply run:
-```
-make
-```
-To run the program in the test mode:
-```
-touch test
-./clock test
 ```
 
 To run the program on a Raspberry Pi, provide the path to device file for
