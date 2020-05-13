@@ -5,7 +5,7 @@ FLAGS=-pedantic -Wall -Wextra -Wcast-align -Wcast-qual \
       -Woverloaded-virtual -Wredundant-decls -Wshadow \
       -Wsign-conversion -Wsign-promo \
       -Wstrict-overflow=5 -Wswitch-default -Wundef -Werror -Wno-unused \
-      -lasan -fsanitize=address -fno-omit-frame-pointer \
+      -fno-omit-frame-pointer \
       -std=c++14 -O2
 
 TARGET=clock

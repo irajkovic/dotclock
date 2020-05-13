@@ -15,14 +15,36 @@ implementing the Device::Spi interface.
 
 # Usage
 
-To compile the code, simply run:
+## Build
+
+To build the code with CMake, run following commands:
+```
+mkdir build
+cd build
+cmake ..
+make
+```
+
+Alternatively, to compile the code without the CMake, run:
 ```
 make
 ```
+
+## Running in test mode 
+
 To run the program in the test mode:
 ```
 touch test
 ./clock test
+```
+
+## Running on Raspberry PI
+
+To run the program on a Raspberry Pi, provide the path to device file for
+SPI (here assuming that the MAX7219 is connected to the first spi interface):
+
+```
+./clock /dev/spi0.0
 ```
 
 # Test mode
@@ -45,11 +67,6 @@ Example of the console output in test mode is given below.
 --------------------------------
 ```
 
-To run the program on a Raspberry Pi, provide the path to device file for
-SPI (here assuming that the MAX7219 is connected to the first spi interface):
-```
-./clock /dev/spi0.0
-```
 # Integration with external programs
 
 The clock supports the "File" face, which loads text from plain text files and
